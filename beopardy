@@ -1094,8 +1094,8 @@ sub enterdbl {
 
 	my $ich=$crap->Toplevel;
 
-	$global_dbl_maxamt=100*$f*2;
-	$global_dbl_amt=100*$f;
+    # initial wager on GUI is the value of the question
+    $global_dbl_amt = 100*$f;
 
 	$ich->overrideredirect(1) if($override);
 	$ich->resizable(0,0);
@@ -1117,6 +1117,7 @@ sub enterdbl {
 			-fill	=>'x',
 			-expand	=> 1,
 	);
+    # initial wager is player's max
 	my $amnt=$ftl->Label(
 			-textvar	=> \$global_dbl_amt,
 			-font	=> $qfont,
@@ -1155,10 +1156,16 @@ sub enterdbl {
 #    $ftl->focusForce;
 };
 
-sub amt_chg{
-	$global_dbl_amt+=shift;
-	if($global_dbl_amt<0){$global_dbl_amt=0};
-	if($global_dbl_amt>$global_dbl_maxamt){$global_dbl_amt=$global_dbl_maxamt};
+# applied real Jeopardy double rules:
+# - max wager is player's score or 500 (board max), highest of the two
+# - min wager is always 50
+sub amt_chg {
+    $global_dbl_amt+=shift;
+
+    $global_dbl_maxamt = ($points[$global_dbl_ply] < 500) ? 500 : $points[$global_dbl_ply];
+
+	if ($global_dbl_amt <= 0) { $global_dbl_amt = 50; }
+	if ($global_dbl_amt > $global_dbl_maxamt ) { $global_dbl_amt = $global_dbl_maxamt; }
 };
 
 sub dblplychg{
