@@ -902,6 +902,7 @@ sub answerQuest{
 	&snd_stop() if ($key eq "0"); # XXX
 	my $pos;
 	$key=-$pos if (($pos=index('0!"#$%&/()',$key))>0);
+	$key=-2  if($key eq '@'); # @ is shift-2 on US keyboards
 	$key=-3  if($key eq '§');
 	$key="0" if($key eq "`"); # Be nice on ami-kbd
 	$key="0" if($key eq "^"); # Be nice on german-kbd
