@@ -209,7 +209,7 @@ while (<J>){
 		s/(.{10,$qwidth})\s+/$1\n/mg;
 	};
 	s/\\\\/\\/mg;
-	$jdata{$nam}[++$c]=$_;
+	$jdata{$nam}[++$c]=Encode::decode_utf8($_);
 };
 close(J);
 printf "%-20s:%2d\n",$nam,$c if ($debug);
@@ -235,7 +235,7 @@ sub read_game{
 	while (<G>){
 		chomp;
 		next if (/^\s*(#|$)/);
-		push @Cat,$_;
+		push @Cat, Encode::decode_utf8($_);
 	};
 	close(G);
 
