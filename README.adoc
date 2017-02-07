@@ -1,0 +1,13 @@
+= beopardy
+
+Modified version of the beopardy software used at the NorthSec Hacker Jeopardy
+
+https://nsec.io/
+
+== Credits
+
+* Thanks to Sec for making the original code!
+* Thanks to all who provided questions! synner, ggermain, ouaibe, fproulx, spacebar, etc.
+* Thanks to @fproulx for co-animating and operating the sound board
+* Thanks to @bvanheu for operating the game board
+* Thanks to init_null for operating the bar
