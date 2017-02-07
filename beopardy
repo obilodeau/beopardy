@@ -14,6 +14,8 @@ use warnings;
 use Tk;
 use Tk::X11Font;
 use Tk::Dialog;
+use Tk::JPEG;
+use Tk::PNG;
 use Socket;
 use FileHandle;
 use Getopt::Std;
@@ -708,10 +710,14 @@ sub selectQuest{
 		print "This is of $typ - \'$2\'\n";
 		if($typ eq "img"){
 			if(!defined($imgcache{$fnam})){
-				if(-f "img/".$fnam.".xpm"){
-					$imgcache{$fnam} = $tl->Pixmap($fnam,-file => "img/".$fnam.".xpm");
+                #if(-f "img/".$fnam.".xpm"){
+				if(-f "img/".$fnam){
+                    # this is so much faster than below
+					$imgcache{$fnam} = $tl->Photo($fnam,-file => "img/".$fnam);
+                    #$imgcache{$fnam} = $tl->Pixmap($fnam,-file => "img/".$fnam.".xpm");
 				}else{
-					print "img/".$fnam.".xpm not found\n";
+                    #print "img/".$fnam.".xpm not found\n";
+					print "img/$fnam not found\n";
 				};
 			};
 		};
@@ -1275,9 +1281,6 @@ sub adjscore{
 	$wid->configure(-text=>"$players[$log[$c][$f][$nr][1]] $log[$c][$f][$nr][0] [$log[$c][$f][$nr][2]]",
 			-background	=> $colors[$log[$c][$f][$nr][1]]
 			);
-
-    use Data::Dumper;
-    print Dumper(\@log);
 };
 
 sub updBox{
