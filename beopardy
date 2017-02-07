@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 # vim:set ts=4 sw=4 cin sm:
 
@@ -9,6 +9,8 @@ use constant beopardy =>
 	q$Id: beopardy,v 1.16 2006/12/23 16:09:21 sec Exp sec $;
 
 use strict;
+use warnings;
+
 use Tk;
 use Tk::X11Font;
 use Tk::Dialog;
@@ -65,11 +67,7 @@ my %opt;
 getopts('ydoftsg:r:hwbm', \%opt);
 
 # Possible screen sizes
-my %screen=( 320 => 200,
-			 640 => 480,
-		     800 => 600, 
-			1024 => 786);
-
+my %screen=( 320 => 200, 640 => 480, 800 => 600, 1024 => 786);
 my @beopardy = split(/ /,beopardy);
 
 if (defined $opt{h}){
@@ -695,27 +693,27 @@ sub selectQuest{
 	}else{
 		my $txt=$jdata{$Cat[$c]}[$f];
 		my $magicfont=$qfont;
-	if ($txt =~ s/^\[fixed\]//){
-		$magicfont=$fixedfont;
-	};
-	if ($txt =~ s/^\[utf8\]//){
-		$txt=Encode::decode_utf8($txt);
-	};
+		if ($txt =~ s/^\[fixed\]//){
+			$magicfont=$fixedfont;
+		}
+		if ($txt =~ s/^\[utf8\]//){
+			$txt=Encode::decode_utf8($txt);
+		}
 		if(defined($fnam)&&($typ eq "snd")){
 			if(!$soundd){$txt.="\n[ERR:Nosound]"};
 			&snd_play($fnam);
 			$snd_save=$fnam;
-		};
+		}
 		if($txt=~s/^\[snd:.*?\]\s*//){
 			if(!$txt){
 				$txt=_("Zuhören...");
 			};
-		};
+		}
 		if($txt=~s/^\[img:.*?\]\s*//){
 			if(!$txt){
 				$txt=_("[ERR:Noimg]");
 			};
-		};
+		}
 		$question = $tl->Label(
 			-text	=> $txt,
 			-font	=> $magicfont,
