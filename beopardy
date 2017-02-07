@@ -390,6 +390,7 @@ for my $cat (0..$#Cat){
 				-command	=> [\&selectQuest,$tl,$cat,$q],
 				-font		=> $tfont,
 				-highlightcolor => "red",
+                -highlightthickness => 5,
 		)->pack( -fill => 'both', -expand => 1);
 		$button[$cat][$q]->bind('<h>',[\&moveCrsr,$cat-1,$q  ]);
 		$button[$cat][$q]->bind('<j>',[\&moveCrsr,$cat  ,$q+1]);
