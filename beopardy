@@ -141,7 +141,8 @@ if (defined $opt{g}){
 }
 
 my $q=5;						# Wieviele Fragen/Kategorie?
-my $qwidth=35;					# Width of a question.
+#my $qwidth=35;					# Width of a question.
+my $qwidth=30;					# Width of a question.
 my $catwidth =10;				# Width of categories.
 my $namewidth=10;				# Width of player names
 
@@ -286,26 +287,33 @@ my @points;
 
 # Here starts the Tk part...
 # font problem? select new fonts with the xfontsel utility
-
-my $qfont=$tl->X11Font('-*-new century schoolbook-medium-r-*--60-*-*-*-*-*-*-*');
+my $fontsize = 96;
+my $qfont=$tl->X11Font('-*-bitstream charter-medium-r-*--60-*-*-*-*-*-*-*');
+$qfont = "{bitstream charter} $fontsize bold";
 print "Question-Font:\n$qfont\n" if ($debug);
-
+#
 my $tfont=$tl->X11Font('-*-helvetica-medium-r-*-*-25-*-*-*-*-*-*-*');
+$tfont = "{bitstream charter} $fontsize bold";
 print "Title-Font:\n$tfont\n" if($debug);
-
+#
 my $sfont=$tl->X11Font('-*-clean-medium-r-*-*-17-*-*-*-*-*-*-*');
+$sfont = "{bitstream charter} 24 bold";
 print "Small-Font:\n$sfont\n" if($debug);
-
+#
 my $fixedfont=$tl->X11Font('-*-courier-medium-r-*-*-40-*-*-*-*-*-*-*');
+$fixedfont = "{courier 10 pitch} $fontsize";
 print "Fixed-Font:\n$fixedfont\n" if($debug);
-
+#
 my $utf8font=$tl->X11Font('-*-new century schoolbook-medium-r-*--60-*-*-*-*-*-iso8859-*');
+$utf8font = $qfont;
 print "UTF8-Font:\n$utf8font\n" if($debug);
-
-die "One or more fonts failed. Font problems? Select new ones with the xfontsel utility\n"
+#
+die "One or more fonts failed. Font problems? Select new ones with the xfontsel utility\n" 
     unless ($qfont and $tfont and $sfont);
 
-$tl->configure(-height => $height, -width => $width);
+# XXX some attempts
+#$tl->configure(-height => $height, -width => $width);
+$tl->configure(-height => ($height - 62), -width => $width);
 $tl->resizable(0,0);
 $tl->packPropagate(0);	# Keep the size.
 $tl->overrideredirect(1) if ($override);
@@ -654,6 +662,12 @@ sub selectQuest{
 	$tl->overrideredirect(1) if($override);
 	$tl->grab;
 
+    # XXX some attempts
+    $tl->FullScreen(1);
+    $tl->grabGlobal;
+    $tl->focusForce;
+
+
 	my $tlabel = $tl->Label(
 			-text	=> $Cat[$c],
 			-relief	=> 'ridge',
@@ -763,7 +777,6 @@ sub ser_answerQuest {
 	$ich->overrideredirect(1) if($override);
 	$ich->resizable(0,0);
 	$ich->geometry("-0-0");
-
 
 	my $ftl = $ich->Frame( -relief => 'ridge', -bd => 4)->pack;
 	$cur_ser_answer[0]=$ftl->Label(
@@ -907,7 +920,15 @@ sub answerQuest{
 			&updPlayfield($c,$f,$key,$sgn);
 			$crap->destroy if ($sgn>0);
 			&ser_reset if ($tty);
-			$button[$c][$f]->focusForce if ($force && ($sgn>0));
+            $button[$c][$f]->focusForce if ($force && ($sgn>0));
+
+            # XXX some attempt
+            #use Data::Dumper;
+            #print Dumper(\$tl);
+            #$tl->Toplevel->focusForce;
+            $button[$c][$f]->focusForce if ($sgn>0);
+            #$button[$c][$f]->focus;
+
 #			&snd_stop(0);
 			return;
 		};
@@ -1050,7 +1071,6 @@ sub enterdbl {
 	$ich->resizable(0,0);
 	$ich->geometry("-0-0");
 
-
 	my $ftl = $ich->Frame( -relief => 'ridge', -bd => 4)->pack;
 	my $ttl=$ftl->Label(
 			-text	=> "Double Jeopardy",
@@ -1098,6 +1118,11 @@ sub enterdbl {
 
 	$br->focus;
 	$br->focusForce if($force);
+
+    # XXX some attempt
+#    $ftl->FullScreen(1);
+#    $ftl->grabGlobal;
+#    $ftl->focusForce;
 };
 
 sub amt_chg{
