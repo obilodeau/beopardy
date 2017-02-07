@@ -309,7 +309,7 @@ my @waiger;
 # Here starts the Tk part...
 # font problem? select new fonts with the xfontsel utility
 #my $fontsize = 96;
-my $fontsize = 80;
+my $fontsize = 52;
 my $qfont=$tl->X11Font('-*-bitstream charter-medium-r-*--60-*-*-*-*-*-*-*');
 $qfont = "{bitstream charter} $fontsize bold";
 print "Question-Font:\n$qfont\n" if ($debug);
@@ -319,7 +319,7 @@ $tfont = "{bitstream charter} $fontsize bold";
 print "Title-Font:\n$tfont\n" if($debug);
 #
 my $sfont=$tl->X11Font('-*-clean-medium-r-*-*-17-*-*-*-*-*-*-*');
-$sfont = "{bitstream charter} 24 bold";
+$sfont = "{bitstream charter} 14 bold";
 print "Small-Font:\n$sfont\n" if($debug);
 #
 my $fixedfont=$tl->X11Font('-*-courier-medium-r-*-*-40-*-*-*-*-*-*-*');
@@ -1572,6 +1572,7 @@ sub final_show_question {
         -text	=> $final_question,
         -font	=> $qfont,
         -justify	=> "left",
+        -wraplength => $width - 40,
     ) ->pack( -fill	=>'both', -expand =>1 );
 
 
