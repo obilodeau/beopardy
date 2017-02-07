@@ -1,0 +1,24 @@
+Description of the File Formats:
+
++ Some Definitions RundeX.jg "
+
+A category name per line (without ")
+As many categories as possible.
+
++ Question File "Jeopardy"
+
+Each category starts with "Category name"
+Then 5 lines follow, each one of the (visible) responses.
+Any number of lines with "#" are inserted at the beginning. E.g. with
+the related issues.
+
+In the responses valid special characters: "\n" for newline.
+[dbl] for Double Jeopardy question
+[fixed] for the "fixed " font (for ascii-code and graphics)
+[utf8] utf8 for questions format (for kanji or other special characters)
+[snd: <name>] or [img: <name>] for sound or image issues
+
+[NOTE] If no \n occurs beopardy tries to make sense
+       Line breaks to intersperse.
+[NOTE] images must have an .xpm extension and be in img/ directory.
+[NOTE] The number of questions per category is (only) configurable in the source.

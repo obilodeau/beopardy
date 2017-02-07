@@ -1,0 +1,31 @@
+Docu for "soundd - Beopardy Sound Daemon:
+
+Requires perl p5-POE, and right-Progam player (mplayer, mpg123, ...)
+
+Start: ". / soundd"
+
+The soundd listend by default to localhost: 32 001 and takes only a
+connection at once.
+
+* NOTE * The soundd has no access protection, and processes including
+absolute paths. Therefore, all the best only on localhost listener.
+
+One can view the source in soundd aliases for sound files, but is not
+necessary.
+
+Soundd makes the handling of the "moods". The colors are by udp
+sent so there is no connection setup / handling demolitions must be
+
+Sent always be 12 bytes. 3 bytes (R, G, B for 4 lamps per lamp)
+
+-------------------------------------------------- ----------------------
+
+Network Protocol:
+
+"n P filename \"- Play sound (old sound abort if Necessary)
+"S \ n " - Stop sound (kill program)
+"Z \ n " - "Zap, " Try to kill program and reset soundd
+(used in case soundd wedges, so a new sounds can be played)
+"D \ n " - "Del" reset soundd unconditionally.
+
+The last two should not really need, but who knows%)

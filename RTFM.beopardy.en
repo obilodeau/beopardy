@@ -1,0 +1,86 @@
+=== Requisites:
+
+beopardy is written in perlTk. It does require p5-Tk along with some
+Fonts. These are for FreeBSD in the "web fonts" package - but can alternatively
+be changed in the source.
+
+[HINT] fonts to choose xfontsel :-)
+
+Font shananigans
+
+installed packages: xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
+ran: sudo dpkg-reconfigure fontconfig
+
+This version can display images (only as. Xpm, but with transparency)
+Sound and Moodlamp (with only soundd).
+
+For debugging, the buzzer instead of Serial emulation via telnet
+will see RTFM.serial
+
+=== Start:
+
+./beopardy -h for command line switches.
+
+Congress Standard Game: ./beopardy -oftyw RundeX.jg
+
+[NOTE] -y needs a soundd running on localhost
+[NOTE] m (mood) also needs a running soundd AND a matching
+       mood-receiver daemon (no source for it there)
+[NOTE] t need a serial-connected Beopardy Board
+[NOTE] from the serial device names may adapt the source
+
+[NOTE] -w writes a savgeame "RundeX.jg. <date>. <Time>", With the
+       "-R File Name" can be read in again, should the Game
+       crash, or whatever.
+
+=== Use:
+
++ Startup Screen: [Only with "b" or "t" / "s"]
+
+Player skin a button, user must enter name, enter.
+Once all players are entered, select Start.
+
+[NOTE] The program can be any number of players. With more than 4 players
+However, the buttons pressed in ascending order
+be. (If need more than 5 colors in the source nor forgive uu
+       be)
+
+"M" starts the "start" sound. (Yes, even if it occurs in the player name%)
+
++ No Startup Screen:
+
+Player name specified on the command line.
+
+Games + Screen
+
+The mouse to click would work, but the program is to
+Keyboard input designed. Mouse simply slide into the bottom right corner.
+
+hjkl or cursor keys "go around" for
+Space or Enter to select
+r for stupid award.
+R for random number generator.
+Z to reset to the soundd. (Soundd-protocol "Z")
+Q for quit
+F for screen-final
+E for Edit points
+
++ Double jeopardy:
+up-down (jk) for point, right-left (HL) for player
+
++ Question:
+0: none really
+q: to put away
+(Hack: correct 1-4, Shift1-SHIFT4: False)
+
++ Button pressed:
+right-left (hl) to select the correct / incorrect / Oops buttons.
+[Oops button = ignore]
+
++ Edit mode:
+Up-Down (jk) selection.
+d: Delete item
++ / -: Question True / False
+0-4: Players choose n
+Right-Left: double-jeopardy edit points
+q: exit
