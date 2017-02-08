@@ -1,0 +1,41 @@
+== Setup
+
+Useful sometimes:
+
+    Ctrl-Alt-F1
+    $ gnome-shell --replace --display :0
+
+== Keybindings
+
+=== In board mode
+
+jkl; or arrows:: navigation (vim-style)
+<shift>-E:: go to edit mode for highlighted question
+
+=== In question mode
+
+q:: return to board
+<shift>-<digit>:: incorrect answer on team #
+<digit>:: correct answer for team # (returns to board)
+
+=== In daily-double mode
+
+Betting:
+jk or <up>-<down>:: increase or decrease bet
+<Enter>:: accept bet
+
+Answering:
+<digit>:: correct answer for team # (returns to board)
+
+=== In edit mode
+
+q:: return to board
+jk or <up>-<down>:: up-down navigation (vim-style)
+l; or <left>-<right>:: Override points received (useful only for daily doubles)
+
+Over a team name:
+d:: removes a team like if they never participated
++:: team answered successfully, points adjusted
+-:: team answered wrongly, points adjusted
+
+
