@@ -1103,7 +1103,7 @@ sub enterdbl {
 
 	my $ftl = $ich->Frame( -relief => 'ridge', -bd => 4)->pack;
 	my $ttl=$ftl->Label(
-			-text	=> "Double Jeopardy",
+			-text	=> "Daily Double",
 			-font	=> $qfont,
 	)->pack(
 			-fill	=>'x',
@@ -1468,6 +1468,10 @@ sub final_waiger {
 	my $f = $rframe;
 	my $row=0;
 	foreach (1 .. $#players) {
+        # prepopulate the waiger global with player scores
+        # fixes regression that occured board operator doesn't give focus on score fields
+        $waiger[$_] = $points[$_];
+
 #		my $e = $f->Entry(qw/-relief sunken -width 40/);
 		my $e = $f->Entry(-relief	=> "sunken",
 			-font	=> $sfont,
@@ -1539,7 +1543,7 @@ sub set_waiger {
     $bet = 0 if ($points[$player] <= 0);
 
     $waiger[$player] = $bet;
-	print "set_waiger player $player to $waiger[$player]\n" if($debug);
+	print "set_waiger player $player to $waiger[$player]\n" if ($debug);
     # updating component just in case we updated it
     $e->delete(0, 'end');
     $e->insert(0, $bet);
