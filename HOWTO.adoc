@@ -1,16 +1,11 @@
-== Setup
-
-Useful sometimes:
-
-    Ctrl-Alt-F1
-    $ gnome-shell --replace --display :0
-
 == Keybindings
 
 === In board mode
 
 jkl; or arrows:: navigation (vim-style)
 <shift>-E:: go to edit mode for highlighted question
+<shift>-R:: picks a team at random (fuck with the focus)
+<shift>-F:: board is over go to Final Jeopardy
 
 === In question mode
 
@@ -20,12 +15,24 @@ q:: return to board
 
 === In daily-double mode
 
-Betting:
+==== Betting:
+
 jk or <up>-<down>:: increase or decrease bet
 <Enter>:: accept bet
 
-Answering:
+==== Answering:
+
 <digit>:: correct answer for team # (returns to board)
+
+<<<
+
+=== In final Jeopardy mode
+
+Assign bets graphically. Click the button.
+
+<shift>-<digit>:: incorrect answer on team #
+<digit>:: correct answer for team # (returns to board)
+q:: The game is over lets see the final scores
 
 === In edit mode
 
@@ -33,9 +40,15 @@ q:: return to board
 jk or <up>-<down>:: up-down navigation (vim-style)
 l; or <left>-<right>:: Override points received (useful only for daily doubles)
 
-Over a team name:
+==== Over a team name:
+
 d:: removes a team like if they never participated
 +:: team answered successfully, points adjusted
 -:: team answered wrongly, points adjusted
 
+== Setup
 
+Useful sometimes:
+
+    Ctrl-Alt-F1
+    $ gnome-shell --replace --display :0

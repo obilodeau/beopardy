@@ -1,0 +1,14 @@
+= TIPS
+
+== Fixing images resolutions
+
+Check them
+
+    exiftool -ImageSize img/*
+
+Adjust them
+
+    gm convert -resize 700x700 img/industry-figures500.png img/industry-figures500-large.png
+
+Cool thing about resize is that it keeps aspect ratio and simply adapts to
+maximize (or minimize) to given resolution.

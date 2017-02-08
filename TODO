@@ -1,3 +1,6 @@
+* fix libvirt / kvm
+* try to have proper full screen mode
+* fix focus problem after random
 * new logo
 * Try sec42's patches
 * Fix exceptions, prettify
